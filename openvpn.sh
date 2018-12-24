@@ -136,7 +136,7 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" i \
     echo "tls-client" >>$conf
     echo "remote-cert-tls server" >>$conf
     echo "auth-user-pass $auth" >>$conf
-    #echo "comp-lzo" >>$conf
+    echo "compress" >>$conf
     echo "verb 4" >>$conf
     echo "cipher AES-256-CBC" >>$conf
     echo "auth SHA256" >>$conf
