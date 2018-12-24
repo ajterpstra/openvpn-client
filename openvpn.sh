@@ -143,6 +143,8 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" i \
     echo "disable-occ" >>$conf
     echo "fast-io" >>$conf
     echo "ca $cert" >>$conf
+    echo "cert $client_cert" >>$conf
+	echo "key $client_key" >>$conf
     [[ $(wc -w <<< $pem) -eq 1 ]] && echo "crl-verify $pem" >>$conf
 
     echo "$user" >$auth
@@ -208,6 +210,8 @@ auth="$dir/vpn.auth"
 cert_auth="$dir/vpn.cert_auth"
 conf="$dir/vpn.conf"
 cert="$dir/vpn-ca.crt"
+client_cert="$dir/client_cert.crt"
+client_key="$dir/client_key.key"
 route="$dir/.firewall"
 route6="$dir/.firewall6"
 [[ -f $conf ]] || { [[ $(ls -d $dir/*|egrep '\.(conf|ovpn)$' 2>&-|wc -w) -eq 1 \
