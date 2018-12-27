@@ -144,7 +144,6 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" i \
     echo "reneg-sec 0" >>$conf
     echo "redirect-gateway def1" >>$conf
     #echo "disable-occ" >>$conf
-    echo "occ" >>$conf
     #echo "fast-io" >>$conf
     echo "ca $cert" >>$conf
     echo "cert $client_cert" >>$conf
