@@ -121,7 +121,7 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" i \
 
     echo "client" >$conf
     echo "dev tun" >>$conf
-    echo "proto udp" >>$conf
+    echo "proto tcp-client" >>$conf
     for i in $(sed 's/:/ /g' <<< $server); do
         echo "remote $i $port" >>$conf
     done
@@ -143,8 +143,9 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" i \
     echo "script-security 2" >>$conf
     echo "reneg-sec 0" >>$conf
     echo "redirect-gateway def1" >>$conf
-    echo "disable-occ" >>$conf
-    echo "fast-io" >>$conf
+    #echo "disable-occ" >>$conf
+    echo "occ" >>$conf
+    #echo "fast-io" >>$conf
     echo "ca $cert" >>$conf
     echo "cert $client_cert" >>$conf
 	echo "key $client_key" >>$conf
